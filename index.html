@@ -15,7 +15,6 @@
         }
 
         body {
-            font-family: "Microsoft YaHei";
             font-size:14px;
             color:#333;
         }
@@ -63,26 +62,6 @@
             overflow:hidden;
         }
 
-        .fl {
-            float: left
-        }
-
-        .fr {
-            float: right
-        }
-
-        .tl {
-            text-align: left;
-        }
-
-        .tc {
-            text-align: center
-        }
-
-        .tr {
-            text-align: right;
-        }
-
         .ellipse {
             overflow: hidden;
             text-overflow: ellipsis;
@@ -112,6 +91,59 @@
     </style>
 </head>
 <body>
-    <div id="web_bg" style="background-image: url(https://raw.githubusercontent.com/zboroo/zboroo.github.io/master/bg.jpg);"></div>
+    <div id="web_bg" style="background-image: url(https://raw.githubusercontent.com/zboroo/zboroo.github.io/master/bg.jpg);">
+		<!--名称-->
+		<div style="display: flex;justify-content: center;align-items: center;margin-top:200px;">
+			<img src="https://raw.githubusercontent.com/zboroo/zboroo.github.io/master/logo.png" alt="Logo">
+		</div>
+		<!--上线时间文案-->
+		<div style="display: flex;justify-content: center;align-items: center;">
+			<img src="https://raw.githubusercontent.com/zboroo/zboroo.github.io/master/public.png" alt="Public">
+		</div>
+		<!--上线时间-->
+		<p style="text-align:center;color:white;font-size:50px;font-weight:100;margin-top:50px;" id="timer"></p>
+		<!--作者-->
+		<div style="position: fixed;bottom: 100px;display:block;width:100%;text-align:center;">
+			<img style="display:inline-block;margin:0px auto;" src="https://raw.githubusercontent.com/zboroo/zboroo.github.io/master/author.png" alt="Public">
+		</div>
+		<!--版权-->
+		<div style="position: fixed;bottom: 0;display:block;width:100%;text-align:center;">
+			<img style="display:inline-block;margin:0px auto;" src="https://raw.githubusercontent.com/zboroo/zboroo.github.io/master/copy.png" alt="Public">
+		</div>
+	</div>
+	<body onload="go()"> 
+	<script type="text/javascript">
+		 // 倒计时
+		 var _ordertimer = null;
+		 var data=new Date();
+		 function leftTimer(enddate) {
+		 	var leftTime = (new Date(enddate)) - new Date(); //计算剩余的毫秒数
+		  	var days = parseInt(leftTime / 1000 / 60 / 60 / 24, 10); //计算剩余的天数
+		 	var hours = parseInt(leftTime / 1000 / 60 / 60 % 24, 10); //计算剩余的小时
+		  	var minutes = parseInt(leftTime / 1000 / 60 % 60, 10);//计算剩余的分钟
+		  	var seconds = parseInt(leftTime / 1000 % 60, 10);//计算剩余的秒数
+		  	days = checkTime(days);
+		  	hours = checkTime(hours);
+		  	minutes = checkTime(minutes);
+		  	seconds = checkTime(seconds);
+		  	if (days >= 0 || hours >= 0 || minutes >= 0 || seconds >= 0) document.getElementById("timer").innerHTML = days + " 天 " + hours + " 时 " + minutes + " 分 " + seconds + " 秒 ";
+		  	if (days <= 0 && hours <= 0 && minutes <= 0 && seconds <= 0) {
+		  		window.clearInterval(_ordertimer);
+		  		_ordertimer = null;
+		  	}
+		 }
+		 function checkTime(i) { //将0-9的数字前面加上0，例1变为01
+		 	if (i < 10) {
+		  		i = "0" + i;
+		  	}
+		  	return i;
+		 }
+		 function go(){
+			v = "2020-01-01 00:00:00"
+		 	var date1=new Date(),data2=new Date(v);
+		 	if(data2<date1)return;//设置的时间小于现在时间退出
+		 	_ordertimer = setInterval(function(){leftTimer(data2)}, 1000);
+		 }
+	 </script>
 </body>
 </html>
