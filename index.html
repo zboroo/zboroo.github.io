@@ -1,149 +1,136 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>子不语</title>
-    <style type="text/css">
-         /*公共样式--开始*/
-        html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input, textarea, th, td, select {
-            margin: 0;
-            padding: 0;
-        }
-        *{box-sizing: border-box;}
-        html, body {
-            min-height: 100%;
-        }
+<html lang="zh-CN">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<title>子不语官方网站</title>
+		<style>
+			body {
+			  background-image: url("https://raw.githubusercontent.com/zboroo/zboroo.github.io/master/Background.png");
+			  background-position: center 0;
+			  background-repeat: no-repeat;
+			  background-attachment: fixed;
+			  background-size: cover;
+			  -webkit-background-size: cover;
+			  -o-background-size: cover;
+			  -moz-background-size: cover;
+			  -ms-background-size: cover;
+			}
+			@media (min-width: 375px){
+				#timer{
+					color:#3E2214;font-size:20px;font-weight:100;z-index:1;position:absolute;margin:auto;position: absolute;left:0px;right: 0px;top:16px;bottom: 0px;
+				}
+				#pre{
+					margin-top:200px;
+				}
+				#rel{
+					color:#3E2214;font-size:20px;font-weight:540;
+				}
+			}
+			/* 小屏幕（平板，大于等于 768px） */
+			@media (min-width: 768px){
+				#timer{
+					color:#3E2214;font-size:50px;font-weight:100;z-index:1;position:absolute;margin:auto;position: absolute;left:0px;right: 0px;top:30px;bottom: 0px;
+				}
+				#pre{
+					margin-top:200px;
+				}
+				#rel{
+					color:#3E2214;font-size:40px;font-weight:540;
+				}
+			}
 
-        body {
-            font-size:14px;
-            color:#333;
-        }
-        h1, h2, h3, h4, h5, h6{font-weight:normal;}
-        ul,ol {
-            list-style: none;
-        }
+			/* 中等屏幕（桌面显示器，大于等于 992px） */
+			@media (min-width: 992px) {
+				#timer{
+					color:#3E2214;font-size:30px;font-weight:100;z-index:1;position:absolute;margin:auto;position: absolute;left:0px;right: 0px;top:30px;bottom: 0px;
+				}
+				#pre{
+					margin-top:200px;
+				}
+				#rel{
+					color:#3E2214;font-size:40px;font-weight:540;
+				}
+			}
 
-        img {
-            border: none;
-            vertical-align: middle;
-        }
-
-        a {
-            text-decoration: none;
-            color: #232323;
-        }
-
-        table {
-            border-collapse: collapse;
-            table-layout: fixed;
-        }
-
-        input, textarea {
-            outline: none;
-            border: none;
-        }
-
-        textarea {
-            resize: none;
-            overflow: auto;
-        }
-
-        .clearfix {
-            zoom: 1;
-        }
-
-        .clearfix:after {
-            content: ".";
-            width: 0;
-            height: 0;
-            visibility: hidden;
-            display: block;
-            clear: both;
-            overflow:hidden;
-        }
-
-        .ellipse {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        .inline{
-            display: inline-block;
-            *display: inline;
-            *zoom: 1;
-        }
-        #web_bg{
-          position:fixed;
-          top: 0;
-          left: 0;
-          width:100%;
-          height:100%;
-          min-width: 1000px;
-          z-index:-10;
-          zoom: 1;
-          background-color: #fff;
-          background-repeat: no-repeat;
-          background-size: cover;
-          -webkit-background-size: cover;
-          -o-background-size: cover;
-          background-position: center 0;
-        }
-    </style>
-</head>
-<body>
-    <div id="web_bg" style="background-image: url(https://raw.githubusercontent.com/zboroo/zboroo.github.io/master/bg.jpg);">
-		<!--名称-->
-		<div style="display: flex;justify-content: center;align-items: center;margin-top:200px;">
-			<img src="https://raw.githubusercontent.com/zboroo/zboroo.github.io/master/logo.png" alt="Logo">
+			/* 大屏幕（大桌面显示器，大于等于 1200px） */
+			@media (min-width: 1200px) {
+				#timer{
+					color:#3E2214;font-size:50px;font-weight:100;z-index:1;position:absolute;margin:auto;position: absolute;left:0px;right: 0px;top:45px;bottom: 0px;
+				}
+				#pre{
+					margin-top:100px;
+				}
+				#rel{
+					color:#3E2214;font-size:30px;font-weight:540;margin-top:10px;
+				}
+			}
+		</style>
+	</head>
+	<body onload="go()">
+		<div class="container-fluid">
+			<div class="row" style="margin-top:200px;">
+				<div class="col-md-3 col-xs-1">
+				</div>
+				<div class="col-md-6 col-xs-10 text-center" style="position:relative;">
+					<img src="https://raw.githubusercontent.com/zboroo/zboroo.github.io/master/Book.png" class="img-responsive"/>
+					<p id="timer" class="time">375 天 01 时 39 分 35 秒</p>
+				</div>
+				<div class="col-md-3 col-xs-1">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3 col-xs-1">
+				</div>
+				<div class="col-md-6 col-xs-10 text-center">
+					<p id="rel">距离正式版上线还有:</p>
+				</div>
+				<div class="col-md-3 col-xs-1">
+				</div>
+			</div>
+			<div class="row" style="margin-top:20px;">
+				<div class="col-md-4 col-xs-1">
+				</div>
+				<div class="col-md-4 col-xs-10 text-center">
+					<img id="pre" src="https://raw.githubusercontent.com/zboroo/zboroo.github.io/master/Button.png" class="img-responsive"/>
+				</div>
+				<div class="col-md-4 col-xs-1">
+				</div>
+			</div>
 		</div>
-		<!--上线时间文案-->
-		<div style="display: flex;justify-content: center;align-items: center;">
-			<img src="https://raw.githubusercontent.com/zboroo/zboroo.github.io/master/public.png" alt="Public">
-		</div>
-		<!--上线时间-->
-		<p style="text-align:center;color:white;font-size:60px;font-weight:100;margin-top:50px;" id="timer"></p>
-		<!--作者-->
-		<div style="position: fixed;bottom: 100px;display:block;width:100%;text-align:center;">
-			<img style="display:inline-block;margin:0px auto;" src="https://raw.githubusercontent.com/zboroo/zboroo.github.io/master/author.png" alt="Public">
-		</div>
-		<!--版权-->
-		<div style="position: fixed;bottom: 0;display:block;width:100%;text-align:center;">
-			<img style="display:inline-block;margin:0px auto;" src="https://raw.githubusercontent.com/zboroo/zboroo.github.io/master/copy.png" alt="Public">
-		</div>
-	</div>
-	<body onload="go()"> 
+	</body>
 	<script type="text/javascript">
-		 // 倒计时
-		 var _ordertimer = null;
-		 var data=new Date();
-		 function leftTimer(enddate) {
-		 	var leftTime = (new Date(enddate)) - new Date(); //计算剩余的毫秒数
-		  	var days = parseInt(leftTime / 1000 / 60 / 60 / 24, 10); //计算剩余的天数
-		 	var hours = parseInt(leftTime / 1000 / 60 / 60 % 24, 10); //计算剩余的小时
-		  	var minutes = parseInt(leftTime / 1000 / 60 % 60, 10);//计算剩余的分钟
-		  	var seconds = parseInt(leftTime / 1000 % 60, 10);//计算剩余的秒数
-		  	days = checkTime(days);
-		  	hours = checkTime(hours);
-		  	minutes = checkTime(minutes);
-		  	seconds = checkTime(seconds);
-		  	if (days >= 0 || hours >= 0 || minutes >= 0 || seconds >= 0) document.getElementById("timer").innerHTML = days + " 天 " + hours + " 时 " + minutes + " 分 " + seconds + " 秒 ";
-		  	if (days <= 0 && hours <= 0 && minutes <= 0 && seconds <= 0) {
-		  		window.clearInterval(_ordertimer);
-		  		_ordertimer = null;
-		  	}
-		 }
-		 function checkTime(i) { //将0-9的数字前面加上0，例1变为01
-		 	if (i < 10) {
-		  		i = "0" + i;
-		  	}
-		  	return i;
-		 }
-		 function go(){
+		 // 倒计时
+		 var _ordertimer = null;
+		 var data=new Date();
+		 function leftTimer(enddate) {
+		 	var leftTime = (new Date(enddate)) - new Date(); //计算剩余的毫秒数
+		  	var days = parseInt(leftTime / 1000 / 60 / 60 / 24, 10); //计算剩余的天数
+		 	var hours = parseInt(leftTime / 1000 / 60 / 60 % 24, 10); //计算剩余的小时
+		  	var minutes = parseInt(leftTime / 1000 / 60 % 60, 10);//计算剩余的分钟
+		  	var seconds = parseInt(leftTime / 1000 % 60, 10);//计算剩余的秒数
+		  	days = checkTime(days);
+		  	hours = checkTime(hours);
+		  	minutes = checkTime(minutes);
+		  	seconds = checkTime(seconds);
+		  	if (days >= 0 || hours >= 0 || minutes >= 0 || seconds >= 0) document.getElementById("timer").innerHTML = days + " 天 " + hours + " 时 " + minutes + " 分 " + seconds + " 秒 ";
+		  	if (days <= 0 && hours <= 0 && minutes <= 0 && seconds <= 0) {
+		  		window.clearInterval(_ordertimer);
+		  		_ordertimer = null;
+		  	}
+		 }
+		 function checkTime(i) { //将0-9的数字前面加上0，例1变为01
+		 	if (i < 10) {
+		  		i = "0" + i;
+		  	}
+		  	return i;
+		 }
+		 function go(){
 			v = "2020-01-01 00:00:00"
-		 	var date1=new Date(),data2=new Date(v);
-		 	if(data2<date1)return;//设置的时间小于现在时间退出
-		 	_ordertimer = setInterval(function(){leftTimer(data2)}, 1000);
-		 }
-	 </script>
-</body>
+		 	var date1=new Date(),data2=new Date(v);
+		 	if(data2<date1)return;//设置的时间小于现在时间退出
+		 	_ordertimer = setInterval(function(){leftTimer(data2)}, 1000);
+		 }
+	 </script>
 </html>
